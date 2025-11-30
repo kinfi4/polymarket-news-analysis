@@ -3,6 +3,7 @@ from datetime import timedelta
 
 import requests
 import pandas as pd
+from tqdm import tqdm
 
 
 def fetch_event(event_id: int) -> dict:
@@ -53,7 +54,7 @@ def fetch_price_history(token_id: str, start_date: pd.Timestamp, end_date: pd.Ti
     return {'times': times, 'prices': prices}
 
 
-def load_market_data(filename: str = 'election_2024_prices.json') -> dict:
+def load_market_data(filename: str) -> dict:
     from pathlib import Path
 
     data_dir = Path(__file__).parent.parent / 'data'
@@ -65,9 +66,7 @@ def load_market_data(filename: str = 'election_2024_prices.json') -> dict:
     data['event']['start_date'] = pd.to_datetime(data['event']['start_date'])
     data['event']['end_date'] = pd.to_datetime(data['event']['end_date'])
 
-    for question in data['price_data']:
-        data['price_data'][question]['times'] = [
-            pd.to_datetime(t) for t in data['price_data'][question]['times']
-        ]
+    for question, series in tqdm(data['price_data'].items(), desc="Loading price series"):
+        series['times'] = [pd.to_datetime(t) for t in series['times']]
 
     return data
