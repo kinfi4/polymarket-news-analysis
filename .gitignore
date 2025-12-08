@@ -21,4 +21,4 @@ data/
 *.json
 *.pkl
 *.h5
-
+notebooks/DATA
