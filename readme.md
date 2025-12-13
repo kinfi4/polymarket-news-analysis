@@ -1,6 +1,6 @@
 # ML News-Market Analysis
 
-**Authors**: [LevMAn53](https://github.com/LevMAn53), [1wannabebetter1](https://github.com/1wannabebetter1)
+**Authors**: [kinfi4](https://github.com/kinfi4), [LevMAn53](https://github.com/LevMAn53), [1wannabebetter1](https://github.com/1wannabebetter1)
 
 Analysis of news sentiment correlation with prediction market prices using data from Polymarket and GDELT.
 
